@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coloring Book Lettering Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1714; --ink-light: #5a5450; --ink-faint: #a09890;
+  --parchment: #faf7f2; --parchment-dark: #f0ebe2; --rule: #e0d8cc;
+  --accent: #b85c1a;
+  --script-bg: #eeedfe; --script-col: #3c3489;
+  --bold-bg: #faece7;   --bold-col: #993c1d;
+  --serif-bg: #e1f5ee;  --serif-col: #0f6e56;
+  --sans-bg: #e6f1fb;   --sans-col: #185fa5;
+  --italic-bg: #fef3fb; --italic-col: #8b2d72;
+  --under-bg: #f1efe8;  --under-col: #5f5e5a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--parchment); color: var(--ink); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+/* MASTHEAD */
+.masthead { background: var(--ink); color: var(--parchment); padding: 2.5rem 3rem 2rem; position: relative; overflow: hidden; }
+.masthead::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px); }
+.masthead-inner { position: relative; max-width: 860px; }
+.eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; }
+.masthead-title { font-family: 'Dancing Script', cursive; font-size: 3rem; font-weight: 700; line-height: 1; margin-bottom: 0.4rem; }
+.masthead-sub { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+.purpose { background: rgba(255,255,255,0.07); border-left: 2px solid rgba(255,255,255,0.2); padding: 0.9rem 1.25rem; border-radius: 0 3px 3px 0; font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.7; max-width: 640px; }
+.purpose strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+
+/* LAYOUT */
+.main { max-width: 900px; padding: 2.5rem 3rem; }
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
+
+/* NOTES */
+.notes-wrap { background: white; border: 1px solid var(--rule); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; }
+.notes-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.85rem; }
+.notes-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; padding-left: 0.25rem; }
+.notes-list li { font-size: 13px; color: var(--ink-light); line-height: 1.55; padding-left: 1.1rem; position: relative; }
+.notes-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-size: 18px; line-height: 1.1; }
+.notes-list li strong { color: var(--ink); font-weight: 600; }
+
+/* CARDS */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-bottom: 2.5rem; }
+.role-card { background: white; border: 1px solid var(--rule); border-radius: 4px; padding: 1.25rem; transition: box-shadow .2s; }
+.role-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+.badge { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
+.num { font-size: 11px; color: var(--ink-faint); }
+.sample { min-height: 58px; display: flex; align-items: center; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); }
+.card-desc { font-size: 12px; color: var(--ink-light); line-height: 1.65; }
+.card-desc strong { color: var(--ink); font-weight: 600; }
+.card-eg { font-size: 11px; color: var(--ink-faint); margin-top: 0.4rem; font-style: italic; }
+
+/* RULE STRIP */
+.rule-strip { background: var(--parchment-dark); border: 1px solid var(--rule); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; }
+.rule-strip-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.75rem; }
+.rules-list { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+.rules-list li { font-size: 13px; color: var(--ink); line-height: 1.5; padding-left: 1.25rem; position: relative; }
+.rules-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.read-together { display: flex; flex-wrap: wrap; gap: 2rem; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+.rt-group { display: flex; flex-direction: column; gap: 4px; }
+.rt-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+
+/* DIVIDER */
+.divider { border: none; border-top: 1px solid var(--rule); margin: 0 0 2rem; }
+
+/* INPUT */
+.input-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 0.5rem; }
+textarea#txt { width: 100%; min-height: 80px; font-size: 15px; padding: 10px 14px; border: 1px solid var(--rule); border-radius: 4px; background: white; color: var(--ink); resize: vertical; line-height: 1.6; font-family: 'Cormorant Garamond', serif; display: block; margin-bottom: 0.75rem; }
+textarea#txt:focus { outline: none; border-color: var(--ink); }
+
+/* BUTTON */
+.analyze-btn { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; padding: 10px 22px; border: none; border-radius: 3px; background: var(--ink); color: var(--parchment); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity .2s; display: inline-flex; align-items: center; gap: 8px; }
+.analyze-btn:hover { opacity: 0.85; }
+.analyze-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-sub { font-size: 11px; font-weight: 400; opacity: 0.55; }
+.status { font-size: 13px; color: var(--accent); min-height: 20px; margin-top: 0.65rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+
+/* TABLE */
+.verse-meta { font-size: 12px; color: var(--ink-faint); font-style: italic; margin: 1.25rem 0 0.65rem; font-family: 'Cormorant Garamond', serif; }
+.table-wrap { background: white; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+thead th { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--rule); background: var(--parchment); }
+tbody td { font-size: 13px; padding: 10px 14px; border-bottom: 1px solid var(--parchment-dark); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--parchment); }
+.word-cell { font-size: 15px; font-weight: 600; font-family: 'Cormorant Garamond', serif; }
+.preview-cell { min-height: 32px; display: flex; align-items: center; }
+.reason-cell { font-size: 12px; color: var(--ink-light); }
+
+/* SEQUENCE CHECK */
+.seq-check { background: var(--parchment-dark); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.5rem; margin-top: 1.25rem; display: none; }
+.seq-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.75rem; }
+.seq-row { display: flex; flex-wrap: wrap; gap: 1.75rem; }
+.seq-group { display: flex; flex-direction: column; gap: 3px; }
+.seq-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
+
+/* OUTLINE NOTE */
+.outline-note { margin-top: 1.25rem; padding: 0.9rem 1.25rem; background: white; border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0; font-size: 12px; color: var(--ink-light); line-height: 1.65; }
+.outline-note strong { color: var(--ink); }
+
+/* FOOTER */
+footer { background: var(--ink); color: rgba(255,255,255,0.3); font-size: 11px; padding: 1.5rem 3rem; margin-top: 2rem; letter-spacing: 0.04em; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { display: inline-block; animation: spin 1s linear infinite; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="eyebrow">Designer Reference · Internal Use Only</div>
+    <div class="masthead-title">Lettering Guide</div>
+    <div class="masthead-sub">Typographic font roles for the Coloring Book Series</div>
+    <div class="purpose">
+      <strong>Purpose:</strong> This guide defines how words in Bible verse coloring book posters should be treated typographically. It ensures consistency across the series — the same word hierarchy, design logic, and spiritual intent — regardless of illustration style. For use in this coloring book series only. Do not share or repurpose outside this project.
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="notes-wrap">
+    <div class="notes-title">Keep in mind</div>
+    <ul class="notes-list">
+      <li>All words are rendered at the <strong>same size</strong> — hierarchy comes from typeface style, weight, and posture only.</li>
+      <li>Script words read together in sequence must form a <strong>positive, uplifting thought</strong>.</li>
+      <li>Bold words read together in sequence must deliver the <strong>correct core message</strong> of the verse.</li>
+      <li>All words are in <strong>outline form</strong> for coloring — avoid ultra-thin strokes, especially in script treatments.</li>
+      <li>This guide is for this coloring book series <strong>only</strong> — do not share or repurpose outside this project.</li>
+    </ul>
+  </div>
+
+  <div class="section-label">Font role reference</div>
+  <div class="cards-grid">
+
+    <div class="role-card">
+      <div class="card-head"><span class="badge" style="background:var(--script-bg);color:var(--script-col)">Script</span><span class="num">01</span></div>
+      <div class="sample"><span style="font-family:'Dancing Script',cursive;font-size:36px;font-weight:700;color:var(--ink)">thanksgiving</span></div>
+      <div class="card-desc"><strong>The felt word.</strong> Handwriting or cursive. Warm, personal, devotional. Stands apart purely through style. Script words read together must form a positive thought.
+        <div class="card-eg">e.g. prayer · thanksgiving · God</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="card-head"><span class="badge" style="background:var(--bold-bg);color:var(--bold-col)">Bold</span><span class="num">02</span></div>
+      <div class="sample"><span style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink)">PRESENT</span></div>
+      <div class="card-desc"><strong>The declared word.</strong> All caps, heavy sans-serif. Commands and divine names. Caps carries the authority that size no longer can. Bold words read together must deliver the right message.
+        <div class="card-eg">e.g. PRESENT · REQUESTS</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="card-head"><span class="badge" style="background:var(--serif-bg);color:var(--serif-col)">Serif</span><span class="num">03</span></div>
+      <div class="sample"><span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--ink)">situation</span></div>
+      <div class="card-desc"><strong>The grounded word.</strong> Mixed case, bold serif, upright. Important nouns and theological terms. Carries weight through form, not loudness.
+        <div class="card-eg">e.g. situation · petition · brothers</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="card-head"><span class="badge" style="background:var(--sans-bg);color:var(--sans-col)">Sans-serif</span><span class="num">04</span></div>
+      <div class="sample"><span style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:400;color:var(--ink)">anything</span></div>
+      <div class="card-desc"><strong>The supporting word.</strong> Mixed case, regular sans-serif. Context words that carry meaning but don't demand attention. Cleaner and lighter than serif without disappearing.
+        <div class="card-eg">e.g. anything · every · requests</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="card-head"><span class="badge" style="background:var(--italic-bg);color:var(--italic-col)">Italic</span><span class="num">05</span></div>
+      <div class="sample"><span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:400;font-style:italic;color:var(--ink)">anxious</span></div>
+      <div class="card-desc"><strong>The gentle emphasis.</strong> Italic serif or sans. A whisper where bold is a declaration — for words felt softly, not loudly.
+        <div class="card-eg">e.g. anxious · petition · meet</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="card-head"><span class="badge" style="background:var(--under-bg);color:var(--under-col)">Understated</span><span class="num">06</span></div>
+      <div class="sample"><span style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:400;color:var(--ink-faint);letter-spacing:0.04em">but · in · by</span></div>
+      <div class="card-desc"><strong>The connective word.</strong> Muted sans-serif, regular weight. Articles, prepositions, conjunctions — present to be read, not to be noticed.
+        <div class="card-eg">e.g. do · not · be · but · in · by · and · to</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rule-strip">
+    <div class="rule-strip-title">The two rules — check every verse before finalising</div>
+    <ul class="rules-list">
+      <li>Script words read in sequence must form a <strong>positive, uplifting thought</strong> on their own.</li>
+      <li>Bold words read in sequence must deliver the <strong>core instruction</strong> of the verse clearly and correctly.</li>
+    </ul>
+    <div class="read-together">
+      <div class="rt-group">
+        <span class="rt-label">Script reads as →</span>
+        <span style="font-family:'Dancing Script',cursive;font-size:22px;font-weight:700;color:var(--script-col)">prayer · thanksgiving · God</span>
+      </div>
+      <div class="rt-group">
+        <span class="rt-label">Bold reads as →</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;color:var(--bold-col)">PRESENT REQUESTS</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">Verse word analysis</div>
+  <label class="input-label" for="txt">Paste verse text</label>
+  <textarea id="txt" placeholder="Paste any Bible verse here…"></textarea>
+  <button class="analyze-btn" id="analyzebtn">
+    ✦ Let's letter this
+    <span class="btn-sub">— updates table instantly</span>
+  </button>
+  <div class="status" id="status"></div>
+
+  <div class="verse-meta" id="verse-meta">Philippians 4:6 — Do not be anxious about anything…</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:130px">Word</th>
+          <th style="width:145px">Role</th>
+          <th style="width:185px">Preview</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="seq-check" id="seq-check">
+    <div class="seq-title">Role sequence check</div>
+    <div class="seq-row">
+      <div class="seq-group">
+        <span class="seq-label">Script reads as →</span>
+        <span id="script-seq" style="font-family:'Dancing Script',cursive;font-size:20px;font-weight:700;color:var(--script-col)"></span>
+      </div>
+      <div class="seq-group">
+        <span class="seq-label">Bold reads as →</span>
+        <span id="bold-seq" style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;color:var(--bold-col)"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="outline-note">
+    <strong>Outline lettering note:</strong> All words in this series are rendered as outlines for coloring. Ensure script and italic treatments use strokes thick enough to remain legible — a minimum 2pt stroke weight is recommended. Ultra-thin hairline scripts lose definition when outlined.
+  </div>
+
+</div>
+
+<footer>Coloring Book Series · Lettering Guide · For internal project use only · Do not distribute</footer>
+
+<script>
+const BADGES = {
+  script: ['var(--script-bg)', 'var(--script-col)', 'Script'],
+  bold:   ['var(--bold-bg)',   'var(--bold-col)',   'Bold'],
+  serif:  ['var(--serif-bg)',  'var(--serif-col)',  'Serif'],
+  sans:   ['var(--sans-bg)',   'var(--sans-col)',   'Sans-serif'],
+  italic: ['var(--italic-bg)', 'var(--italic-col)', 'Italic'],
+  under:  ['var(--under-bg)',  'var(--under-col)',  'Understated']
+};
+
+const PREVIEW_STYLES = {
+  script: `font-family:'Dancing Script',cursive;font-size:22px;font-weight:700;color:var(--ink)`,
+  bold:   `font-family:'DM Sans',sans-serif;font-size:18px;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink)`,
+  serif:  `font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--ink)`,
+  sans:   `font-family:'DM Sans',sans-serif;font-size:18px;font-weight:400;color:var(--ink)`,
+  italic: `font-family:'Playfair Display',serif;font-size:18px;font-weight:400;font-style:italic;color:var(--ink)`,
+  under:  `font-family:'DM Sans',sans-serif;font-size:18px;font-weight:400;color:var(--ink-faint)`
+};
+
+const DEFAULT_ROWS = [
+  {word:"Do",            role:"under",  reason:"opening connector"},
+  {word:"not",           role:"under",  reason:"negation stays quiet"},
+  {word:"be",            role:"under",  reason:"auxiliary verb"},
+  {word:"anxious",       role:"italic", reason:"gently names the feeling"},
+  {word:"about",         role:"under",  reason:"preposition"},
+  {word:"anything,",     role:"sans",   reason:"broad scope, context word"},
+  {word:"but",           role:"under",  reason:"pivot conjunction"},
+  {word:"in",            role:"under",  reason:"preposition"},
+  {word:"every",         role:"sans",   reason:"qualifying word"},
+  {word:"situation,",    role:"serif",  reason:"key contextual noun"},
+  {word:"by",            role:"under",  reason:"preposition"},
+  {word:"prayer",        role:"script", reason:"script #1 — devotional hero"},
+  {word:"and",           role:"under",  reason:"conjunction"},
+  {word:"petition,",     role:"italic", reason:"gentle emphasis, paired with prayer"},
+  {word:"with",          role:"under",  reason:"preposition"},
+  {word:"thanksgiving,", role:"script", reason:"script #2 — emotional posture"},
+  {word:"present",       role:"bold",   reason:"bold #1 — command to act"},
+  {word:"your",          role:"under",  reason:"possessive, recedes"},
+  {word:"requests",      role:"bold",   reason:"bold #2 — what to bring"},
+  {word:"to",            role:"under",  reason:"preposition"},
+  {word:"God.",          role:"script", reason:"script #3 — the destination"}
+];
+
+function renderTable(rows, meta) {
+  if (meta) document.getElementById('verse-meta').textContent = meta;
+  document.getElementById('tbody').innerHTML = rows.map(r => {
+    const [bg, col, label] = BADGES[r.role] || ['#eee', '#333', r.role];
+    const w = r.word.replace(/[,.!?;:]/g, '');
+    const display = r.role === 'bold' ? w.toUpperCase() : w;
+    return `<tr>
+      <td class="word-cell">${r.word}</td>
+      <td><span class="badge" style="background:${bg};color:${col}">${label}</span></td>
+      <td><div class="preview-cell"><span style="${PREVIEW_STYLES[r.role] || ''}">${display}</span></div></td>
+      <td class="reason-cell">${r.reason}</td>
+    </tr>`;
+  }).join('');
+
+  // update sequence check
+  const scriptWords = rows.filter(r => r.role === 'script').map(r => r.word.replace(/[,.!?;:]/g, '')).join(' · ');
+  const boldWords   = rows.filter(r => r.role === 'bold').map(r => r.word.replace(/[,.!?;:]/g, '').toUpperCase()).join(' · ');
+  document.getElementById('script-seq').textContent = scriptWords;
+  document.getElementById('bold-seq').textContent   = boldWords;
+  document.getElementById('seq-check').style.display = 'block';
+}
+
+renderTable(DEFAULT_ROWS);
+
+document.getElementById('analyzebtn').addEventListener('click', async function () {
+  const text = document.getElementById('txt').value.trim();
+  if (!text) return;
+
+  const btn    = document.getElementById('analyzebtn');
+  const status = document.getElementById('status');
+  btn.disabled = true;
+  status.innerHTML = '<span class="spin">✦</span>&nbsp; Analysing verse…';
+
+  const prompt = `You are a typography director for inspirational Bible verse coloring book posters for all ages.
+Assign a font role to each word in this verse. All words will be the same size — hierarchy comes only from typeface style, weight, and posture.
+
+The six roles:
+- script: decorative handwriting/cursive — the warmest, most devotional words. Script words read together in sequence must form a positive, uplifting thought. Max 3 per verse.
+- bold: ALL CAPS heavy sans-serif — commands, divine names, strong verbs. Bold words read together must deliver the correct core message of the verse. Max 3 per verse.
+- serif: mixed case bold serif — important nouns, theological terms
+- sans: mixed case regular sans-serif — supporting context words with meaning
+- italic: mixed case italic — gentle emphasis, words to be felt softly not loudly
+- under: muted regular sans-serif — articles, prepositions, conjunctions only
+
+Verse: "${text}"
+
+Respond ONLY with raw JSON — no markdown, no backticks, no explanation:
+{"words":[{"word":"string","role":"script|bold|serif|sans|italic|under","reason":"max 6 words"}],"ref":"scripture reference if known, else empty string"}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1500,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    if (!res.ok) throw new Error('API responded with status ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+
+    const raw = (data.content || []).find(b => b.type === 'text')?.text || '';
+    const parsed = JSON.parse(raw.replace(/```json|```/g, '').trim());
+    const meta = parsed.ref
+      ? `${parsed.ref} — ${text.substring(0, 55)}…`
+      : text.substring(0, 65) + '…';
+
+    renderTable(parsed.words, meta);
+    status.textContent = '';
+
+  } catch (err) {
+    status.textContent = 'Something went wrong — please try again.';
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
